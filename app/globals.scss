@@ -44,9 +44,13 @@ body {
   font-family:Verdana, Geneva, Tahoma, sans-serif;
 }
 
+a {
+  text-decoration: none;
+}
+
 input,
 button {
-  height: 4rem;
+  height: 3rem;
 }
 
 button {
@@ -65,6 +69,17 @@ button {
 
   &:hover {
     background-color: var(--primary-color);
+  }
+}
+
+.button-secondary {
+  background-color: var(--white);
+  color: var(--blue-1);
+  border: 1px solid var(--blue-1);
+
+  &:hover {
+    background-color: var(--primary-color);
+    color: var(--white);
   }
 }
 

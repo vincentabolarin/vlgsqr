@@ -1,8 +1,9 @@
 import Image from 'next/image';
+import Link from 'next/link';
 
-import styles from './page.module.css'
+import styles from './page.module.scss';
 
-import servicesImage from '../public/services.webp';
+import servicesImage from '/public/services.webp';
 
 export default function Home() {
   return (
@@ -15,11 +16,13 @@ export default function Home() {
               Get Service. Give Service. Connect Now.
             </h2>
             <p className={styles.introParagraph}>
-              You are welcome to the Village Square, the go-to website for connecting
-              service providers and those in need of services across various
-              industries.
+              You are welcome to the Village Square, the go-to website for
+              connecting service providers and those in need of services across
+              various industries.
             </p>
-            <button>Item Delivery</button>
+            <Link href="/item-delivery">
+              <button>Item Delivery</button>
+            </Link>
           </div>
 
           <div className={styles.right}>

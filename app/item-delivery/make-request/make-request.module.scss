@@ -8,8 +8,24 @@
 		justify-content: space-between;
 
 		.left {
-			.introParagraph {
-				color: var(--gray-3);
+            .pageTitle {
+                color: var(--primary-color);
+            }
+			.requestForm {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+
+                .formItem {
+                    display: flex;
+                    flex-direction: column;
+                    gap: .3rem;
+
+                    input,
+                    select {
+                        font-size: var(--font-size-16);
+                    }
+                }
 			}
 		}
 	}

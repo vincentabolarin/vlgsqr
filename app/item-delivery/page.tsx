@@ -4,10 +4,12 @@ import Link from "next/link";
 import styles from "./item-delivery.module.scss";
 
 import servicesImage from "/public/services.webp";
+import NavBar from "../components/navBar";
 
 const ItemDelivery = () => {
   return (
     <>
+      <NavBar />
       <div className={`${styles.container} container`}>
         <section className={styles.intro}>
           <div className={styles.left}>

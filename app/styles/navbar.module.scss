@@ -1,0 +1,23 @@
+.container {
+    padding: 1rem 8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .logo {
+        .logoText {
+            font-size: 28px;
+        }
+    }
+
+    .menu {
+        display: flex;
+        gap: 2rem;
+
+        a {
+            &:hover {
+                transform: scale(1.1);
+            }
+        }
+    }
+}

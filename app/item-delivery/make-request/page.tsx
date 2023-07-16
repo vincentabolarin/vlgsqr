@@ -58,7 +58,7 @@ const MakeRequest = () => {
 
                 <div className={styles.formItem}>
                   <label htmlFor="itemSource">Item Source</label>
-                  <select name="itemSource" id="itemSource">
+                  <select name="itemSource" id="itemSource" defaultValue="Select One">
                     <option value="Select One" disabled>Select One</option>
                     <option value="Online Store">Online Store</option>
                     <option value="Self Delivery">Self Delivery</option>

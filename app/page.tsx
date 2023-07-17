@@ -22,8 +22,8 @@ export default function Home() {
               connecting service providers and those in need of services across
               various industries.
             </p>
-            <Link href="/item-delivery">
-              <button>Item Delivery</button>
+            <Link href="/shipping">
+              <button>Shipping</button>
             </Link>
           </div>
 

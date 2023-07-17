@@ -1,0 +1,19 @@
+.container {
+	.intro {
+		display: grid;
+		grid-template-columns: 1fr 1.5fr;
+		gap: 5rem;
+		justify-content: space-between;
+
+		.right {
+			.introParagraph {
+				color: var(--gray-3);
+			}
+
+            .buttons {
+                display: flex;
+                gap: 2rem;
+            }
+		}
+	}
+}

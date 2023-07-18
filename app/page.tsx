@@ -1,10 +1,12 @@
-import Image from 'next/image';
-import Link from 'next/link';
+"use client";
 
-import styles from './page.module.scss';
+import Image from "next/image";
+import Link from "next/link";
 
-import servicesImage from '/public/services.webp';
-import NavBar from './components/navBar';
+import styles from "./page.module.scss";
+
+import servicesImage from "/public/services.webp";
+import NavBar from "./components/navBar";
 
 export default function Home() {
   return (

@@ -11,7 +11,6 @@ import NavBar from "./components/navBar";
 export default function Home() {
   return (
     <>
-      <NavBar />
       <div className={`${styles.container} container`}>
         <section className={styles.intro}>
           <div className={styles.left}>

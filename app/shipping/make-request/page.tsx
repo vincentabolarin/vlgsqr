@@ -30,6 +30,24 @@ const MakeRequest = () => {
   const deliveryAddressRef: any = useRef();
   const periodOfNeedRef: any = useRef();
 
+  const itemSourceHandler = (e: any) => {
+    e.preventDefault();
+    const itemSource = e.target.value;
+    const storeName = document.getElementById("storeName");
+    switch (itemSource) {
+      case "Online Store":
+        storeName?.removeAttribute("disabled");
+        storeNameRef.current.value = "";
+        break;
+      case "Self Delivery":
+        storeName?.setAttribute("disabled", "");
+        storeNameRef.current.value = "Self Delivery";
+        break;
+      default:
+        return;
+    }
+  }
+
   const submitHandler = async (e: any) => {
     e.preventDefault();
 
@@ -79,7 +97,7 @@ const MakeRequest = () => {
           deliveryAddress: deliveryAddress,
           periodOfNeed: periodOfNeed,
         });
-        toast.success(`Request to ship ${itemName} submitted successfully.`);
+        toast.success(`Request to ship ${itemName} from ${itemLocation} to ${deliveryAddress} submitted successfully.`);
         form.reset();
         route.push("/shipping/requests");
       } else {
@@ -92,8 +110,6 @@ const MakeRequest = () => {
 
   return (
     <>
-      <ToastContainer />
-      <NavBar />
       <div className={`${styles.container} container`}>
         <section className={styles.intro}>
           <div className={styles.left}>
@@ -202,6 +218,7 @@ const MakeRequest = () => {
                     defaultValue="Select One"
                     ref={itemSourceRef}
                     required
+                    onChange={(e) => itemSourceHandler(e)}
                   >
                     <option value="Select One" disabled>
                       Select One
@@ -219,6 +236,8 @@ const MakeRequest = () => {
                     placeholder="Amazon UK"
                     ref={storeNameRef}
                     required
+                    disabled
+                    defaultValue="Self Delivery"
                   />
                 </div>
 

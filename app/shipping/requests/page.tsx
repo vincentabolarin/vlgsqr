@@ -39,7 +39,6 @@ const Requests = () => {
 
     return (
       <>
-        <NavBar />
         <div className="container">
           {loading && <p>Loading...</p>}
           {loading === false && requests && (

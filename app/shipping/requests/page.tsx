@@ -1,60 +1,68 @@
+"use client";
+
 import NavBar from '@components/app/components/navBar';
 import styles from './requests.module.scss';
+import { useEffect, useState } from 'react';
+import { collection, getDocs } from "firebase/firestore";
+import { database } from '@components/firebaseConfig';
 
 const Requests = () => {
+  const [loading, setLoading]: any = useState(true);
+  const [requests, setRequests]: any = useState([]);
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    // const querySnapshot = await getDocs(collection(database, "requests"));
+    // querySnapshot.forEach((doc) => {
+    //   // doc.data() is never undefined for query doc snapshots
+    //   console.log(doc.id, " => ", doc.data());
+    // });
+
+    const q: any = collection(database, "requests");
+    const querySnapshot: any = await getDocs(q).then(
+      (querySnapshot) => {
+        const newData = querySnapshot.docs.map((doc: any) => ({
+          ...doc.data(),
+          id: doc.id,
+        }));
+        setRequests(newData);
+        console.log(newData);
+        
+      }
+    );
+
+    setLoading(false);
+  };
+
     return (
       <>
         <NavBar />
         <div className="container">
-          <div className={styles.cards}>
-            <div className={styles.card}>
-              <div className={styles.details}>
-                <h2>Laptop</h2>
-                <p>From: London, England</p>
-                <p>To: Lagos, Nigeria</p>
-                <p>Period of Need: 20th August 2023</p>
-              </div>
-              <div className={styles.button}>
-                <button>I am interested</button>
-              </div>
+          {loading && <p>Loading...</p>}
+          {loading === false && requests && (
+            <div className={styles.cards}>
+              {
+                requests.map((request: any) => {
+                  return (
+                    <div className={styles.card} key={request.id}>
+                      <div className={styles.details}>
+                        <h2>{ request.itemName }</h2>
+                        <p>From: { request.itemLocation }</p>
+                        <p>To: { request.deliveryAddress }</p>
+                        <p>Period of Need: { request.periodOfNeed }</p>
+                      </div>
+                      <div className={styles.button}>
+                        <button>I am interested</button>
+                      </div>
+                    </div>
+                  );
+                })
+              }
             </div>
-
-            <div className={styles.card}>
-              <div className={styles.details}>
-                <h2>Mobile Phone</h2>
-                <p>From: Dakar, Senegal</p>
-                <p>To: Ibadan, Nigeria</p>
-                <p>Period of Need: 20th August 2023</p>
-              </div>
-              <div className={styles.button}>
-                <button>I am interested</button>
-              </div>
-            </div>
-
-            <div className={styles.card}>
-              <div className={styles.details}>
-                <h2>Book</h2>
-                <p>From: Kyiv, Ukraine</p>
-                <p>To: Abuja, Nigeria</p>
-                <p>Period of Need: 20th August 2023</p>
-              </div>
-              <div className={styles.button}>
-                <button>I am interested</button>
-              </div>
-            </div>
-            
-            <div className={styles.card}>
-              <div className={styles.details}>
-                <h2>Laptop</h2>
-                <p>From: Beijing, China</p>
-                <p>To: Enugu, Nigeria</p>
-                <p>Period of Need: 20th August 2023</p>
-              </div>
-              <div className={styles.button}>
-                <button>I am interested</button>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </>
     );

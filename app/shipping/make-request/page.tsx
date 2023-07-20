@@ -1,8 +1,10 @@
 "use client";
 
+import { TextField, Select, NativeSelect, InputAdornment, InputLabel, MenuItem } from "@mui/material";
+
 import Image from "next/image";
 
-import { useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 
 import { database } from "../../../firebaseConfig";
 import styles from "./make-request.module.scss";
@@ -10,11 +12,20 @@ import servicesImage from "/public/services.webp";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
-import { addDoc, collection } from "firebase/firestore";
-import NavBar from "@components/app/components/navBar";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
+import SubmitRequestModal from "@components/components/modals/submitRequestModal";
 
 const MakeRequest = () => {
+  
   const route = useRouter();
+
+  const [storeName, setStoreName] = useState("");
+  const [openModal, setOpenModal] = useState(false);
+
+  useEffect(() => {
+    const container: any = document.getElementById("container");
+    container.style.overflow = openModal ? "hidden" : "auto";
+  }, [openModal]);
 
   const formRef: any = useRef();
   const firstNameRef: any = useRef();
@@ -30,22 +41,33 @@ const MakeRequest = () => {
   const deliveryAddressRef: any = useRef();
   const periodOfNeedRef: any = useRef();
 
+  const openSuccessModal = () => {
+    setOpenModal(true);
+    const container: any = document.getElementById("container");
+    container.style.overflow = "hidden";
+  }
+
   const itemSourceHandler = (e: any) => {
     e.preventDefault();
     const itemSource = e.target.value;
     const storeName = document.getElementById("storeName");
     switch (itemSource) {
       case "Online Store":
+        setStoreName("");
         storeName?.removeAttribute("disabled");
-        storeNameRef.current.value = "";
         break;
       case "Self Delivery":
+        setStoreName("Self Delivery");
         storeName?.setAttribute("disabled", "");
-        storeNameRef.current.value = "Self Delivery";
         break;
       default:
         return;
     }
+  }
+
+  const storeNameHandler = (e: any) => {
+    e.preventDefault();
+    setStoreName(e.target.value);
   }
 
   const submitHandler = async (e: any) => {
@@ -67,23 +89,23 @@ const MakeRequest = () => {
 
     const formIsValid = Boolean(
       firstName &&
-        lastName &&
-        email &&
-        phoneNumber &&
-        itemName &&
-        itemDescription &&
-        itemWeight &&
-        itemLocation &&
-        itemSource != "Select One" &&
-        storeName &&
-        deliveryAddress &&
-        periodOfNeed
+      lastName &&
+      email &&
+      phoneNumber &&
+      itemName &&
+      itemDescription &&
+      itemWeight &&
+      itemLocation &&
+      itemSource &&
+      storeName &&
+      deliveryAddress &&
+      periodOfNeed
     );
 
     try {
       if (formIsValid) {
         const requestRef = await addDoc(collection(database, "requests"), {
-          requestDate: new Date(),
+          timeStamp: serverTimestamp(),
           firstName: firstName,
           lastName: lastName,
           email: email,
@@ -97,9 +119,10 @@ const MakeRequest = () => {
           deliveryAddress: deliveryAddress,
           periodOfNeed: periodOfNeed,
         });
-        toast.success(`Request to ship ${itemName} from ${itemLocation} to ${deliveryAddress} submitted successfully.`);
         form.reset();
-        route.push("/shipping/requests");
+        toast.success(`Request to ship ${itemName} from ${itemLocation} to ${deliveryAddress} submitted successfully.`);
+        openSuccessModal();
+        // route.push("/shipping/requests");
       } else {
         toast.error("Please, ensure that all fields have been filled.");
       }
@@ -110,157 +133,165 @@ const MakeRequest = () => {
 
   return (
     <>
-      <div className={`${styles.container} container`}>
+      <div className={`${styles.container} container`} id="container">
         <section className={styles.intro}>
           <div className={styles.left}>
             <h2 className={styles.pageTitle}>Make a Delivery Request</h2>
             <div>
               <form
-                className={styles.requestForm}
+                className={`${styles.requestForm} twoColumnForm`}
                 ref={formRef}
                 onSubmit={submitHandler}
               >
                 <div className={styles.formItem}>
-                  <label htmlFor="firstName">First Name</label>
-                  <input
-                    type="text"
+                  <TextField
                     id="firstName"
+                    type="text"
+                    inputRef={firstNameRef}
+                    required
+                    variant="standard"
                     placeholder="John"
-                    ref={firstNameRef}
-                    required
+                    label="First Name"
                   />
                 </div>
 
                 <div className={styles.formItem}>
-                  <label htmlFor="lastName">Last Name</label>
-                  <input
-                    type="text"
+                  <TextField
                     id="lastName"
+                    type="text"
+                    inputRef={lastNameRef}
+                    required
+                    variant="standard"
                     placeholder="Doe"
-                    ref={lastNameRef}
-                    required
+                    label="Last Name"
                   />
                 </div>
 
                 <div className={styles.formItem}>
-                  <label htmlFor="email">Email Address</label>
-                  <input
-                    type="text"
+                  <TextField
                     id="email"
+                    type="text"
+                    inputRef={emailRef}
+                    required
+                    variant="standard"
                     placeholder="example@example.com"
-                    ref={emailRef}
-                    required
+                    label="Email Address"
                   />
                 </div>
 
                 <div className={styles.formItem}>
-                  <label htmlFor="phoneNumber">Phone Number</label>
-                  <input
-                    type="text"
+                  <TextField
                     id="phoneNumber"
+                    type="text"
+                    inputRef={phoneNumberRef}
+                    required
+                    variant="standard"
                     placeholder="+2348000000000"
-                    ref={phoneNumberRef}
-                    required
+                    label="Phone Number"
                   />
                 </div>
 
                 <div className={styles.formItem}>
-                  <label htmlFor="itemName">Item Name</label>
-                  <input
-                    type="text"
+                  <TextField
                     id="itemName"
+                    type="text"
+                    inputRef={itemNameRef}
+                    required
+                    variant="standard"
                     placeholder="Laptop"
-                    ref={itemNameRef}
-                    required
+                    label="Item Name"
                   />
                 </div>
 
                 <div className={styles.formItem}>
-                  <label htmlFor="itemDescription">Description of Item</label>
-                  <input
-                    type="text"
+                  <TextField
                     id="itemDescription"
+                    type="text"
+                    inputRef={itemDescriptionRef}
+                    required
+                    variant="standard"
                     placeholder="MacBook Pro M1 2020"
-                    ref={itemDescriptionRef}
-                    required
+                    label="Item Description"
                   />
                 </div>
 
                 <div className={styles.formItem}>
-                  <label htmlFor="itemWeight">Weight of Item</label>
-                  <input
-                    type="text"
+                  <TextField
                     id="itemWeight"
-                    placeholder="2kg"
-                    ref={itemWeightRef}
-                    required
-                  />
-                </div>
-
-                <div className={styles.formItem}>
-                  <label htmlFor="itemLocation">
-                    Item Location (City, Country)
-                  </label>
-                  <input
                     type="text"
-                    id="itemLocation"
-                    placeholder="London, England"
-                    ref={itemLocationRef}
+                    inputRef={itemWeightRef}
                     required
+                    variant="standard"
+                    placeholder="4kg"
+                    label="Item Weight"
                   />
                 </div>
 
                 <div className={styles.formItem}>
-                  <label htmlFor="itemSource">Item Source</label>
-                  <select
+                  <TextField
+                    id="itemLocation"
+                    type="text"
+                    inputRef={itemLocationRef}
+                    required
+                    variant="standard"
+                    placeholder="London, England"
+                    label="Item Location (City, Country)"
+                  />
+                </div>
+
+                <div className={styles.formItem}>
+                  <TextField
+                    select
                     name="itemSource"
                     id="itemSource"
-                    defaultValue="Select One"
-                    ref={itemSourceRef}
+                    inputRef={itemSourceRef}
                     required
+                    variant="standard"
+                    label="Item Source"
+                    defaultValue=""
                     onChange={(e) => itemSourceHandler(e)}
                   >
-                    <option value="Select One" disabled>
-                      Select One
-                    </option>
-                    <option value="Online Store">Online Store</option>
-                    <option value="Self Delivery">Self Delivery</option>
-                  </select>
+                    <MenuItem value="Online Store">Online Store</MenuItem>
+                    <MenuItem value="Self Delivery">Self Delivery</MenuItem>
+                  </TextField>
                 </div>
 
                 <div className={styles.formItem}>
-                  <label htmlFor="storeName">Name of Store</label>
-                  <input
-                    type="text"
+                  <TextField
                     id="storeName"
+                    type="text"
+                    inputRef={storeNameRef}
+                    value={storeName || ""}
+                    required
+                    // disabled
+                    variant="standard"
                     placeholder="Amazon UK"
-                    ref={storeNameRef}
-                    required
-                    disabled
-                    defaultValue="Self Delivery"
+                    label="Store Name"
+                    onChange={(e) => storeNameHandler(e)}
                   />
                 </div>
 
                 <div className={styles.formItem}>
-                  <label htmlFor="deliveryAddress">
-                    Delivery Address (City, Country)
-                  </label>
-                  <input
-                    type="text"
+                  <TextField
                     id="deliveryAddress"
-                    placeholder="Lagos, Nigeria"
-                    ref={deliveryAddressRef}
+                    type="text"
+                    inputRef={deliveryAddressRef}
                     required
+                    variant="standard"
+                    placeholder="Lagos, Nigeria"
+                    label="Delivery Address (City, Country)"
                   />
                 </div>
 
                 <div className={styles.formItem}>
-                  <label htmlFor="periodOfNeed">Period Of Need</label>
-                  <input
-                    type="text"
+                  <TextField
                     id="periodOfNeed"
-                    ref={periodOfNeedRef}
+                    type="text"
+                    inputRef={periodOfNeedRef}
                     required
+                    variant="standard"
+                    placeholder="2 weeks"
+                    label="Period Of Need"
                   />
                 </div>
 
@@ -277,6 +308,7 @@ const MakeRequest = () => {
           </div>
         </section>
       </div>
+      {openModal && <SubmitRequestModal />}
     </>
   );
 };

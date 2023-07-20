@@ -1,7 +1,7 @@
 import './globals.scss'
 import type { Metadata } from 'next'
 import { Inter, Roboto_Slab } from 'next/font/google'
-import NavBar from './components/navBar';
+import NavBar from '../components/navBar';
 import { ToastContainer } from 'react-toastify';
 
 const roboto_slab = Roboto_Slab({ subsets: ["latin"]});

@@ -6,7 +6,7 @@ import Link from "next/link";
 import styles from "./shipping.module.scss";
 
 import servicesImage from "/public/services.webp";
-import NavBar from "../components/navBar";
+import NavBar from "../../components/navBar";
 
 const ItemDelivery = () => {
   return (

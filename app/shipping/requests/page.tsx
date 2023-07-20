@@ -1,6 +1,6 @@
 "use client";
 
-import NavBar from '@components/app/components/navBar';
+import NavBar from '@components/components/navBar';
 import styles from './requests.module.scss';
 import { useEffect, useState } from 'react';
 import { collection, getDocs } from "firebase/firestore";

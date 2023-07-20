@@ -6,7 +6,7 @@ import Link from "next/link";
 import styles from "./page.module.scss";
 
 import servicesImage from "/public/services.webp";
-import NavBar from "./components/navBar";
+import NavBar from "../components/navBar";
 
 export default function Home() {
   return (

@@ -1,9 +1,11 @@
 .container {
+    height: 50px;
 	.intro {
 		display: grid;
-		grid-template-columns: 1.5fr 1fr;
+		grid-template-columns: 2fr 1fr;
 		gap: 10rem;
 		justify-content: space-between;
+        align-items: center;
 
 		.left {
             .pageTitle {
@@ -13,6 +15,8 @@
                 display: grid;
                 grid-template-columns: 1fr 1fr;
                 gap: 2rem;
+                background: var(--white);
+                padding: 2rem;
 
                 .formItem {
                     display: flex;

@@ -60,7 +60,7 @@ select {
 }
 
 button {
-  height: 3rem;
+  height: fit-content;
   font-family: inherit;
   background-color: var(--blue-1);
   color: var(--white);
@@ -133,21 +133,20 @@ form {
   background: var(--gray-5);
   height: 100%;
   min-height: 100dvh;
+}
 
-  & > *,
-  h1, h2, h3, h4, h5, h6, p {
-    margin-bottom: 1rem;
-  }
+h1, h2, h3, h4, h5, h6, p {
+  margin-bottom: 1rem;
+}
 
-  .font-48-500 {
-    font-size: var(--font-size-48);
-    font-weight: var(--font-weight-500);
-  }
+.font-48-500 {
+  font-size: var(--font-size-48);
+  font-weight: var(--font-weight-500);
+}
 
-  .font-24-500 {
-    font-size: var(--font-size-24);
-    font-weight: var(--font-weight-500);
-  }
+.font-24-500 {
+  font-size: var(--font-size-24);
+  font-weight: var(--font-weight-500);
 }
 
 ::placeholder {

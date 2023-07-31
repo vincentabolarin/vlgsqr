@@ -13,14 +13,14 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useRouter } from "next/navigation";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import SubmitRequestModal from "@components/components/modals/submitRequestModal";
+import SuccessModal from "@components/components/modals/successModal";
 
 const MakeRequest = () => {
   
   const route = useRouter();
 
   const [storeName, setStoreName] = useState("");
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(true);
 
   useEffect(() => {
     const container: any = document.getElementById("container");
@@ -122,7 +122,6 @@ const MakeRequest = () => {
         form.reset();
         toast.success(`Request to ship ${itemName} from ${itemLocation} to ${deliveryAddress} submitted successfully.`);
         openSuccessModal();
-        // route.push("/shipping/requests");
       } else {
         toast.error("Please, ensure that all fields have been filled.");
       }
@@ -308,7 +307,9 @@ const MakeRequest = () => {
           </div>
         </section>
       </div>
-      {openModal && <SubmitRequestModal />}
+      {openModal && (
+        <SuccessModal title="Request Submitted Successfully!" buttonOneText="New Request" buttonTwoText="View Requests" />
+      )}
     </>
   );
 };

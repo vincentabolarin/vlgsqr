@@ -20,7 +20,7 @@ const MakeRequest = () => {
   const route = useRouter();
 
   const [storeName, setStoreName] = useState("");
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     const container: any = document.getElementById("container");
@@ -45,6 +45,14 @@ const MakeRequest = () => {
     setOpenModal(true);
     const container: any = document.getElementById("container");
     container.style.overflow = "hidden";
+  }
+
+  const closeSuccessModal = () => {
+    setOpenModal(false);
+  }
+
+  const goToRequests = () => {
+    route.replace("/shipping/requests")
   }
 
   const itemSourceHandler = (e: any) => {
@@ -126,7 +134,7 @@ const MakeRequest = () => {
         toast.error("Please, ensure that all fields have been filled.");
       }
     } catch (e) {
-      console.error("Error adding document: ", e);
+      console.error("Error submitting request: ", e);
     }
   };
 
@@ -308,7 +316,15 @@ const MakeRequest = () => {
         </section>
       </div>
       {openModal && (
-        <SuccessModal title="Request Submitted Successfully!" buttonOneText="New Request" buttonTwoText="View Requests" />
+        <SuccessModal
+          closeModal = {closeSuccessModal}
+          title="Request Submitted Successfully!"
+          body="Your request has been submitted successfully. You will be connected to a transporter in a short while."
+          buttonOneText="New Request"
+          buttonTwoText="View Requests"
+          buttonOneClick={closeSuccessModal}
+          buttonTwoClick={goToRequests}
+        />
       )}
     </>
   );

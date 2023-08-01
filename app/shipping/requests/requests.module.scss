@@ -5,7 +5,30 @@
 
     .card {
         background-color: var(--white);
+        box-shadow: 2px 2px 5px var(--gray-1);
         padding: 2rem;
         border-radius: var(--border-radius);
+        cursor: pointer;
+        transition: scale .3s;
+
+        &:hover {
+            scale: 1.05;
+        }
+
+        .details {
+            .itemDetail {
+                display: flex;
+                align-items: center;
+                gap: 1rem;
+
+                &:not(:last-child) {
+                    margin-bottom: 1rem;
+                }
+
+                p {
+                    margin: 0;
+                }
+            }
+        }
     }
 }

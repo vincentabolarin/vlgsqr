@@ -1,10 +1,11 @@
 "use client";
 
-import NavBar from '@components/components/navBar';
 import styles from './requests.module.scss';
 import { useEffect, useState } from 'react';
 import { collection, getDocs } from "firebase/firestore";
 import { database } from '@components/firebaseConfig';
+
+import {CalendarMonth, Navigation, Place} from "@mui/icons-material";
 
 const Requests = () => {
   const [loading, setLoading]: any = useState(true);
@@ -48,13 +49,21 @@ const Requests = () => {
                   return (
                     <div className={styles.card} key={request.id}>
                       <div className={styles.details}>
-                        <h2>{ request.itemName }</h2>
-                        <p>From: { request.itemLocation }</p>
-                        <p>To: { request.deliveryAddress }</p>
-                        <p>Period of Need: { request.periodOfNeed }</p>
-                      </div>
-                      <div className={styles.button}>
-                        <button>I am interested</button>
+                        <h2>{request.itemName}</h2>
+                        <div className={styles.itemDetail}>
+                          <Navigation sx={{color: "var(--green)"}} />
+                          <p>{request.itemLocation}</p>
+                        </div>
+
+                        <div className={styles.itemDetail}>
+                          <Place sx={{color: "var(--red-1)"}} />
+                          <p>{request.deliveryAddress}</p>
+                        </div>
+
+                        <div className={styles.itemDetail}>
+                          <CalendarMonth sx={{color: "var(--primary-color)"}} />
+                          <p>{request.periodOfNeed}</p>
+                        </div>
                       </div>
                     </div>
                   );

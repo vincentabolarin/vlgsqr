@@ -167,10 +167,18 @@ h1, h2, h3, h4, h5, h6, p {
   height: 100vh;
 
   .modalContainer {
-    width: 50%;
+    width: 40%;
     padding: 2rem;
+    display: grid;
+    justify-content: center;
+    justify-items: center;
     border-radius: var(--border-radius);
     background-color: #FFF;
+
+    .title {
+      font-size: var(--font-size-20);
+      font-weight: var(--font-weight-500);
+    }
   }
 }
 

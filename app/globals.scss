@@ -192,6 +192,11 @@ h1, h2, h3, h4, h5, h6, p {
     border-radius: var(--border-radius);
     background-color: #FFF;
 
+    @media screen and (max-width: 968px) {
+      width: 80%;
+      padding: 1rem;
+    }
+
     .header {
       width: 100%;
       display: flex;
@@ -217,6 +222,13 @@ h1, h2, h3, h4, h5, h6, p {
 
     .buttons {
       margin-top: 1rem;
+
+      @media screen and (max-width: 968px) {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+      }
     }
   }
 }

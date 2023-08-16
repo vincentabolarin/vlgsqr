@@ -27,7 +27,7 @@ const MakeRequest = () => {
   const route = useRouter();
 
   const [storeName, setStoreName] = useState("");
-  const [openModal, setOpenModal] = useState(true);
+  const [openModal, setOpenModal] = useState(false);
 
   useEffect(() => {
     const container: any = document.getElementById("container");

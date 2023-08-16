@@ -156,7 +156,7 @@ const MakeRequest = () => {
                     type="text"
                     inputRef={firstNameRef}
                     required
-                    variant="standard"
+                    variant="outlined"
                     placeholder="John"
                     label="First Name"
                   />
@@ -168,7 +168,7 @@ const MakeRequest = () => {
                     type="text"
                     inputRef={lastNameRef}
                     required
-                    variant="standard"
+                    variant="outlined"
                     placeholder="Doe"
                     label="Last Name"
                   />
@@ -180,7 +180,7 @@ const MakeRequest = () => {
                     type="text"
                     inputRef={emailRef}
                     required
-                    variant="standard"
+                    variant="outlined"
                     placeholder="example@example.com"
                     label="Email Address"
                   />
@@ -192,7 +192,7 @@ const MakeRequest = () => {
                     type="text"
                     inputRef={phoneNumberRef}
                     required
-                    variant="standard"
+                    variant="outlined"
                     placeholder="+2348000000000"
                     label="Phone Number"
                   />
@@ -204,7 +204,7 @@ const MakeRequest = () => {
                     type="text"
                     inputRef={itemNameRef}
                     required
-                    variant="standard"
+                    variant="outlined"
                     placeholder="Laptop"
                     label="Item Name"
                   />
@@ -216,7 +216,7 @@ const MakeRequest = () => {
                     type="text"
                     inputRef={itemDescriptionRef}
                     required
-                    variant="standard"
+                    variant="outlined"
                     placeholder="MacBook Pro M1 2020"
                     label="Item Description"
                   />
@@ -228,7 +228,7 @@ const MakeRequest = () => {
                     type="text"
                     inputRef={itemWeightRef}
                     required
-                    variant="standard"
+                    variant="outlined"
                     placeholder="4kg"
                     label="Item Weight"
                   />
@@ -240,7 +240,7 @@ const MakeRequest = () => {
                     type="text"
                     inputRef={itemLocationRef}
                     required
-                    variant="standard"
+                    variant="outlined"
                     placeholder="London, England"
                     label="Item Location (City, Country)"
                   />
@@ -253,7 +253,7 @@ const MakeRequest = () => {
                     id="itemSource"
                     inputRef={itemSourceRef}
                     required
-                    variant="standard"
+                    variant="outlined"
                     label="Item Source"
                     defaultValue=""
                     onChange={(e) => itemSourceHandler(e)}
@@ -271,7 +271,7 @@ const MakeRequest = () => {
                     value={storeName || ""}
                     required
                     // disabled
-                    variant="standard"
+                    variant="outlined"
                     placeholder="Amazon UK"
                     label="Store Name"
                     onChange={(e) => storeNameHandler(e)}
@@ -284,7 +284,7 @@ const MakeRequest = () => {
                     type="text"
                     inputRef={deliveryAddressRef}
                     required
-                    variant="standard"
+                    variant="outlined"
                     placeholder="Lagos, Nigeria"
                     label="Delivery Address (City, Country)"
                   />
@@ -296,7 +296,7 @@ const MakeRequest = () => {
                     type="text"
                     inputRef={periodOfNeedRef}
                     required
-                    variant="standard"
+                    variant="outlined"
                     placeholder="2 weeks"
                     label="Period Of Need"
                   />

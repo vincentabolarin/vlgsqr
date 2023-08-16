@@ -54,7 +54,7 @@ const Requests = () => {
                 requests.map((request: any) => {
                   return (
                     <div className={styles.card} key={request.id} onClick={() => {router.push(
-                      `/shipping/accept-request/${request.id}/accept-request`
+                      `/shipping/accept-request/${request.id}`
                     );}}>
                       <div className={styles.details}>
                         <h2>{request.itemName}</h2>

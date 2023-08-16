@@ -1,6 +1,6 @@
 .container {
     background-color: var(--white);
-    padding: 1rem 8rem;
+    padding: 1rem 4rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -8,6 +8,8 @@
     .logo {
         .logoText {
             font-size: 28px;
+            margin: 0;
+            padding: 0;
         }
     }
 
@@ -20,5 +22,62 @@
                 transform: scale(1.1);
             }
         }
+    }
+
+    .mobileMenu {
+        display: none;
+        cursor: pointer;
+    }
+}
+
+.mobileMenuItems {
+    max-height: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transition: all .5s ease-in-out;
+
+    a {
+        text-decoration: none;
+        color: var(--black);
+
+        &:hover {
+            color: var(--primary-color);
+            scale: 1.1;
+        }
+    }
+
+    &.active {
+        max-height: 100vh;
+        padding: 1rem 0;
+        transition: all .5s ease-in-out;
+    }
+}
+
+@media screen and (max-width: 1280px) {
+    .container {
+        .menu {
+            display: none;
+        }
+
+        .mobileMenu {
+            display: block;
+        }
+    }
+}
+
+@media screen and (min-width: 1281px) {
+    .mobileMenuItems {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 }

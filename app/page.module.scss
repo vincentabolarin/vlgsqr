@@ -12,3 +12,25 @@
 		}
 	}
 }
+
+@media screen and (max-width: 1024px) {
+  .container {
+    text-align: center;
+    
+    .intro {
+      display: flex;
+      flex-direction: column;
+
+      .left {
+        width: 100%;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+      }
+
+      .right {
+        display: none;
+      }
+    }
+  }
+}

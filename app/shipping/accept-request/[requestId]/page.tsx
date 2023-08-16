@@ -199,7 +199,7 @@ const AcceptRequest = () => {
                   </LocalizationProvider>
                 </div>
 
-                <button type="submit">Accept Request</button>
+                <button type="submit" className="button-primary">Accept Request</button>
                 <button type="reset" className="button-reset">
                   Reset
                 </button>

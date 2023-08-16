@@ -1,6 +1,13 @@
 "use client";
 
 import { TextField, Select, NativeSelect, InputAdornment, InputLabel, MenuItem } from "@mui/material";
+import dayjs, { Dayjs } from "dayjs";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import ng from "dayjs/locale/ng";
+import updateLocale from "dayjs/plugin/updateLocale";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+dayjs.locale("ng");
 
 import Image from "next/image";
 
@@ -20,7 +27,7 @@ const MakeRequest = () => {
   const route = useRouter();
 
   const [storeName, setStoreName] = useState("");
-  const [openModal, setOpenModal] = useState(false);
+  const [openModal, setOpenModal] = useState(true);
 
   useEffect(() => {
     const container: any = document.getElementById("container");
@@ -291,15 +298,23 @@ const MakeRequest = () => {
                 </div>
 
                 <div className={styles.formItem}>
-                  <TextField
-                    id="periodOfNeed"
-                    type="text"
-                    inputRef={periodOfNeedRef}
-                    required
-                    variant="outlined"
-                    placeholder="2 weeks"
-                    label="Period Of Need"
-                  />
+                  <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <DatePicker
+                      // renderInput={(props) => <TextField {...props} />}
+                      label="Latest Expected Delivery"
+                      inputRef={periodOfNeedRef}
+                      slotProps={{
+                        textField: {
+                          required: true,
+                          id: "periodOfNeed"
+                        },
+                      }}
+                      // value={value}
+                      // onChange={(newValue) => {
+                      //   setValue(newValue);
+                      // }}
+                    />
+                  </LocalizationProvider>
                 </div>
 
                 <button type="submit">Submit Request</button>
@@ -317,7 +332,7 @@ const MakeRequest = () => {
       </div>
       {openModal && (
         <SuccessModal
-          closeModal = {closeSuccessModal}
+          closeModal={closeSuccessModal}
           title="Request Submitted Successfully!"
           body="Your request has been submitted successfully. You will be connected to a transporter in a short while."
           buttonOneText="New Request"

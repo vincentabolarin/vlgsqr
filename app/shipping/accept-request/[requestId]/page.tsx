@@ -62,6 +62,10 @@ const AcceptRequest = () => {
     setOpenModal(false);
   };
 
+  const goToCreateRequest = () => {
+    route.replace("/shipping/make-request");
+  }
+
   const goToRequests = () => {
     route.replace("/shipping/requests");
   };
@@ -215,7 +219,7 @@ const AcceptRequest = () => {
           body="Your interest in shipping the item has been submitted successfully. You will be contacted if approved."
           buttonOneText="Submit A Request"
           buttonTwoText="View More Requests"
-          buttonOneClick={closeSuccessModal}
+          buttonOneClick={goToCreateRequest}
           buttonTwoClick={goToRequests}
         />
       )}

@@ -1,0 +1,49 @@
+.container {
+	.intro {
+		display: grid;
+		grid-template-columns: 2fr 1fr;
+		gap: 10rem;
+		justify-content: space-between;
+    align-items: center;
+
+		.left {
+      .pageTitle {
+        color: var(--primary-color);
+      }
+			.requestForm {
+        background: var(--white);
+        padding: 2rem;
+
+        .formItem {
+          display: flex;
+          flex-direction: column;
+          gap: .3rem;
+
+          input,
+          select {
+            font-size: var(--font-size-16);
+          }
+        }
+			}
+		}
+	}
+}
+
+@media screen and (max-width: 1024px) {
+  .container {
+    text-align: center;
+    
+    .intro {
+      display: flex;
+      flex-direction: column;
+
+      .left {
+        width: 100%;
+      }
+
+      .right {
+        display: none;
+      }
+    }
+  }
+}

@@ -29,7 +29,7 @@ const ItemDelivery = () => {
             </p>
             <div className={styles.buttons}>
               <Link href="/shipping/make-request">
-                <button>Make Request</button>
+                <button className="button-primary">Make Request</button>
               </Link>
               <Link href="/shipping/requests">
                 <button className="button-secondary">View Requests</button>

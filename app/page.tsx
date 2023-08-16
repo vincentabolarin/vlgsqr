@@ -24,7 +24,7 @@ export default function Home() {
               various industries.
             </p>
             <Link href="/shipping">
-              <button>Shipping</button>
+              <button className="button-primary">Shipping</button>
             </Link>
           </div>
 

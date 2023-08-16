@@ -317,7 +317,7 @@ const MakeRequest = () => {
                   </LocalizationProvider>
                 </div>
 
-                <button type="submit">Submit Request</button>
+                <button type="submit" className="button-primary">Submit Request</button>
                 <button type="reset" className="button-reset">
                   Reset
                 </button>

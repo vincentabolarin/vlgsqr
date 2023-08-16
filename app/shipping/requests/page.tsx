@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import styles from './requests.module.scss';
 import { useEffect, useState } from 'react';
 import { collection, getDocs } from "firebase/firestore";
@@ -8,6 +9,7 @@ import { database } from '@components/firebaseConfig';
 import {CalendarMonth, Navigation, Place} from "@mui/icons-material";
 
 const Requests = () => {
+  const router = useRouter();
   const [loading, setLoading]: any = useState(true);
   const [requests, setRequests]: any = useState([]);
 
@@ -38,6 +40,10 @@ const Requests = () => {
     setLoading(false);
   };
 
+  const acceptRequest = (e: any) => {
+    router.push(`/shipping/${e.target.request.id}accept-request`);
+  }
+
     return (
       <>
         <div className="container">
@@ -47,7 +53,9 @@ const Requests = () => {
               {
                 requests.map((request: any) => {
                   return (
-                    <div className={styles.card} key={request.id}>
+                    <div className={styles.card} key={request.id} onClick={() => {router.push(
+                      `/shipping/accept-request/${request.id}/accept-request`
+                    );}}>
                       <div className={styles.details}>
                         <h2>{request.itemName}</h2>
                         <div className={styles.itemDetail}>

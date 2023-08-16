@@ -62,7 +62,7 @@ select {
 }
 
 button {
-  height: fit-content;
+  height: 3rem;
   font-family: inherit;
   background-color: var(--blue-1);
   color: var(--white);
@@ -116,6 +116,17 @@ form {
     select {
       font-size: var(--font-size-16);
     }
+  }
+}
+
+.singleColumnForm {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  input,
+  select {
+    font-size: var(--font-size-16);
   }
 }
 

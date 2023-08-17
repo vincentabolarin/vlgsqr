@@ -47,10 +47,6 @@ body {
   overflow-x: hidden;
 }
 
-p, h1, h2, h3, h4, h5, h6 {
-  color: var(--black);
-}
-
 a {
   text-decoration: none;
   color: var(--primary-color);
@@ -204,15 +200,31 @@ form {
   background: var(--gray-5);
   height: 100%;
   min-height: 100dvh;
+  // background-image: url("/circleScatterBackground.svg");
+  background-size: cover;
 
   @media screen and (max-width: 1024px) {
     padding: 2rem 4rem;
   }
 }
 
-h1, h2, h3, h4, h5, h6, p {
+p, h1, h2, h3, h4, h5, h6 {
+  color: var(--black);
   margin-bottom: 1rem;
 }
+
+// p, h1, h2, h3, h4, h5, h6 {
+//   color: var(--black);
+//   margin-bottom: 1rem;
+//   height: inherit;
+// 	background: inherit;
+// 	-webkit-background-clip: text;
+// 					background-clip: text;
+// 	color: transparent;
+// 	font: 900 35vmin/50vh cookie, cursive;
+// 	text-align: center;
+// 	filter: invert(1);
+// }
 
 .font-48-500 {
   font-size: var(--font-size-48);
